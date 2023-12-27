@@ -1,9 +1,9 @@
 import json
-import os
 import typer
 from rich import print
-from agentk8s.constant import app_name
-from pathlib import Path
+from autogen import AssistantAgent, UserProxyAgent, config_list_from_json
+from autogen.agentchat.contrib.retrieve_assistant_agent import RetrieveAssistantAgent
+from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
 
 app = typer.Typer()
 
@@ -14,10 +14,30 @@ def callback():
 
 
 @app.command(name='chat')
-def chat():
+def chat(prompt: str):
     """
     Start chat with the k8s agent, let agent do things for you
     """
+    # Load LLM inference endpoints from an env variable or a file
+    # See https://microsoft.github.io/autogen/docs/FAQ#set-your-api-endpoints
+    # and
+    termination_notice = (
+        '\n\nDo not show appreciation in your responses, say only what is necessary. '
+        'if "Thank you" or "You\'re welcome" are said in the conversation, then say TERMINATE '
+        'to indicate the conversation is finished and this is your last message.'
+    )
+    config_list = config_list_from_json(env_or_file="OAI_CONFIG_LIST")
+    assistant = AssistantAgent("assistant", llm_config={"temperature": 0, "seed": 41,
+                                                        "config_list": config_list},
+                               system_message='You are now an Kubernetes (k8s) expert.' 'You should use kubectl '
+                                              'command to complete task, do not output yaml')
+
+    user_proxy = UserProxyAgent("user_proxy", max_consecutive_auto_reply=10, human_input_mode="TERMINATE",
+                                code_execution_config={"work_dir": "coding", "use_docker": False},
+                                llm_config={"temperature": 0, "seed": 41,
+                                            "config_list": config_list})
+    prompt += termination_notice
+    user_proxy.initiate_chat(assistant, message=prompt)
 
 
 @app.command(name='setup')
@@ -30,4 +50,3 @@ def setup():
     config_path = "./OAI_CONFIG_LIST"
     with open(str(config_path), 'w') as file:
         json.dump(config_list, file)
-
