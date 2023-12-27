@@ -2,8 +2,6 @@ import json
 import typer
 from rich import print
 from autogen import AssistantAgent, UserProxyAgent, config_list_from_json
-from autogen.agentchat.contrib.retrieve_assistant_agent import RetrieveAssistantAgent
-from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
 
 app = typer.Typer()
 
@@ -30,7 +28,7 @@ def chat(prompt: str):
     assistant = AssistantAgent("assistant", llm_config={"temperature": 0, "seed": 41,
                                                         "config_list": config_list},
                                system_message='You are now an Kubernetes (k8s) expert.' 'You should use kubectl '
-                                              'command to complete task, do not output yaml')
+                                              'command to complete task, you should output code blocks in shell format, do not output yaml')
 
     user_proxy = UserProxyAgent("user_proxy", max_consecutive_auto_reply=10, human_input_mode="TERMINATE",
                                 code_execution_config={"work_dir": "coding", "use_docker": False},

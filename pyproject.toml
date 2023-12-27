@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "agentk8s"
-version = "0.1.0"
+version = "0.1.1"
 description = "k8s agent that does all the work for you."
 authors = ["天才 <18320122+incomingflyingbrick@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-agentk8s = "agentk8s.main:app"
+kgpt = "agentk8s.main:app"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
