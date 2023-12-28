@@ -11,7 +11,7 @@
 #### Supported python version 3.8 | 3.9 | 3.10 | 3.11
 
 ```commandline 
-pip install kgpt
+pip install agentk8s
 ```
 
 ### Example
@@ -52,7 +52,7 @@ service/mynginx patched
 
 #### 4. Now let's delete the resource we just created.
 ```commandline
-kgtp chat "delete mynginx deployment and service"
+kgpt chat "delete mynginx deployment and service"
 ```
 You should be able to see the following output, if everything is executed successfully.
 
@@ -64,3 +64,5 @@ Code output:
 deployment.apps "mynginx" deleted
 service "mynginx" deleted
 ```
+
+For more possible tasks that the agents can do please checkout [here](./Example_tasks.md)
