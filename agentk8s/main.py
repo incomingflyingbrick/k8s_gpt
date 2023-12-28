@@ -1,4 +1,6 @@
 import json
+import os
+
 import typer
 from rich import print
 from autogen import AssistantAgent, UserProxyAgent, config_list_from_json
@@ -9,6 +11,22 @@ app = typer.Typer()
 @app.callback()
 def callback():
     print("Callback executed")
+
+
+@app.command(name='start local')
+def start_local_cluster():
+    """
+    Start a minibuke cluster locally
+    """
+    os.system('minibuke start')
+
+
+@app.command(name='stop local')
+def stop_local_cluster():
+    """
+    Stop a minibuke cluster that's running on local machine
+    """
+    os.system('minibuke stop')
 
 
 @app.command(name='chat')

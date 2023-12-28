@@ -9,7 +9,7 @@ readme = "README.md"
 kgpt = "agentk8s.main:app"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.12"
+python = ">=3.8,<3.12"
 typer = {extras = ["all"], version = "^0.9.0"}
 docker = "^7.0.0"
 pyautogen = {extras = ["retrievechat"], version = "^0.2.2"}
