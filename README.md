@@ -13,6 +13,10 @@
 ```commandline 
 pip install agentk8s
 ```
+#### Install auto completion (optional)
+```commandline
+kgpt --install-completion
+```
 
 ### Example
 #### 1. call the setup command to enter your GPT-4 api-key
