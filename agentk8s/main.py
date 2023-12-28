@@ -30,7 +30,7 @@ def chat(prompt: str):
                                system_message='You are now an Kubernetes (k8s) expert.' 'You should use kubectl '
                                               'command to complete task, you should output code blocks in shell format, do not output yaml')
 
-    user_proxy = UserProxyAgent("user_proxy", max_consecutive_auto_reply=10, human_input_mode="TERMINATE",
+    user_proxy = UserProxyAgent("user_proxy", max_consecutive_auto_reply=15, human_input_mode="TERMINATE",
                                 code_execution_config={"work_dir": "coding", "use_docker": False},
                                 llm_config={"temperature": 0, "seed": 41,
                                             "config_list": config_list})
