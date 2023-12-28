@@ -9,3 +9,4 @@
 - "create a namespace called gpu and change the nginx deployment's namespace to gpu"
 - "remove the namespace gpu if no deployment with the namespace gpu"
 - "create a docker-registry secret called my-docker-secret, the docker server is mydocker.io usename is vurtne and the password is yqxzv193"
+- "change the annotation of the prod service, add description 'this is a production service' "
