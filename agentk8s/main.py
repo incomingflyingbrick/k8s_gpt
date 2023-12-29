@@ -18,7 +18,7 @@ def start_local_cluster():
     """
     Start a minibuke cluster locally
     """
-    os.system('minibuke start')
+    os.system('minikube start')
 
 
 @app.command(name='stop-local')
@@ -26,7 +26,7 @@ def stop_local_cluster():
     """
     Stop a minibuke cluster that's running on local machine
     """
-    os.system('minibuke stop')
+    os.system('minikube stop')
 
 
 @app.command(name='chat')
