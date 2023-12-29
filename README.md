@@ -82,5 +82,4 @@ service "mynginx" deleted
 - "remove the namespace gpu if no deployment with the namespace gpu"
 - "create a docker-registry secret called my-docker-secret, the docker server is mydocker.io usename is vurtne and the password is yqxzv193"
 
-
-> For more possible tasks that the agent can do please checkout [here](./Example_tasks.md)
+##### For more possible tasks that the agent can do please checkout [here](./Example_tasks.md)

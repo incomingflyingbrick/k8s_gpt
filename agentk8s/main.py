@@ -13,7 +13,7 @@ def callback():
     print("Callback executed")
 
 
-@app.command(name='start local')
+@app.command(name='start-local')
 def start_local_cluster():
     """
     Start a minibuke cluster locally
@@ -21,7 +21,7 @@ def start_local_cluster():
     os.system('minibuke start')
 
 
-@app.command(name='stop local')
+@app.command(name='stop-local')
 def stop_local_cluster():
     """
     Stop a minibuke cluster that's running on local machine
