@@ -3,17 +3,20 @@ import os
 import typer
 from rich import print
 from autogen import AssistantAgent, UserProxyAgent, config_list_from_json
+from typing_extensions import Annotated
 
 app = typer.Typer()
 
 
 @app.callback()
 def callback():
-    print("Callback executed")
+    print("[green]K-GPT Command Running[/green]")
 
 
 @app.command(name='local')
-def local_cluster(cmd: str):
+def local_cluster(
+        cmd: Annotated[
+            str, typer.Argument(help="Enter \"start\" or \"stop\" for turn on/off of minikube local cluster")]):
     """
     Start a minikube cluster locally or stop minikube cluster locally
     """
@@ -24,7 +27,7 @@ def local_cluster(cmd: str):
 
 
 @app.command(name='chat')
-def chat(prompt: str):
+def chat(prompt: Annotated[str, typer.Argument(help="Enter a prompt like \"Show all deployments and services\"")]):
     """
     Start chat with the k8s agent, let agent do things for you
     """
@@ -40,9 +43,10 @@ def chat(prompt: str):
     assistant = AssistantAgent("K-GPT", llm_config={"temperature": 0, "seed": 41,
                                                     "config_list": config_list},
                                system_message='You are now an Kubernetes (k8s) expert.' 'You should use kubectl '
-                                              'command to complete task, you should output code blocks in shell format, do not output yaml')
+                                              'command to complete task, you should output code blocks in shell '
+                                              'format, do not output yaml')
 
-    user_proxy = UserProxyAgent("user", max_consecutive_auto_reply=15, human_input_mode="TERMINATE",
+    user_proxy = UserProxyAgent("User", max_consecutive_auto_reply=15, human_input_mode="TERMINATE",
                                 code_execution_config={"work_dir": "coding", "use_docker": False},
                                 llm_config={"temperature": 0, "seed": 41,
                                             "config_list": config_list})
@@ -52,6 +56,9 @@ def chat(prompt: str):
 
 @app.command(name='setup')
 def setup():
+    """
+    Run this command first after you install \"agentk8s\", it will prompt you to enter your GPT-4 API KEY
+    """
     api_key = typer.prompt("Enter your GPT-4 API KEY")
     config_list = [{
         "model": "gpt-4-1106-preview",
