@@ -1,6 +1,9 @@
 ![alt text](./img/kgpt.webp)
 
 # KGPT
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![](https://img.shields.io/badge/release-0.1.12-green) ![](https://img.shields.io/badge/build-success-a)  
+
 **KGPT**, or **Kubernetes General Purpose Tasker**, is a cutting-edge Kubernetes agent designed to simplify and streamline the management of complex and manual tasks within your Kubernetes cluster. In the dynamic world of container orchestration and cloud-native computing, KGPT emerges as a powerful ally, offering automation and intelligence to help you efficiently handle a wide range of tasks, from deployment and scaling to monitoring and troubleshooting. This innovative agent is engineered to alleviate the burden of manual interventions, enhancing the agility and reliability of your Kubernetes infrastructure. With KGPT at your side, you can confidently navigate the intricate landscape of Kubernetes, ensuring optimal performance and resource utilization while freeing up valuable time for more strategic endeavors.
 
 ### Install
@@ -11,8 +14,8 @@
 - openAI GPT-4 **API key** ready
 
 
-#### Supported python version  | 3.8 | 3.9 | 3.10 | 3.11 
- ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
+#### Supported python version  ![](https://img.shields.io/badge/python-3.8-purple) ![](https://img.shields.io/badge/python-3.9-purple) ![](https://img.shields.io/badge/python-3.10-purple) ![](https://img.shields.io/badge/python-3.11-purple)
+ 
 #### Supported OS
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white) | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) | ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
 ```commandline 
