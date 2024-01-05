@@ -1,3 +1,4 @@
+![alt text](./img/kgpt.webp)
 # KGPT
 **KGPT**, or **Kubernetes General Purpose Tasker**, is a cutting-edge Kubernetes agent designed to simplify and streamline the management of complex and manual tasks within your Kubernetes cluster. In the dynamic world of container orchestration and cloud-native computing, KGPT emerges as a powerful ally, offering automation and intelligence to help you efficiently handle a wide range of tasks, from deployment and scaling to monitoring and troubleshooting. This innovative agent is engineered to alleviate the burden of manual interventions, enhancing the agility and reliability of your Kubernetes infrastructure. With KGPT at your side, you can confidently navigate the intricate landscape of Kubernetes, ensuring optimal performance and resource utilization while freeing up valuable time for more strategic endeavors.
 
