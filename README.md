@@ -13,9 +13,10 @@
 ```commandline 
 pip install agentk8s
 ```
+
 #### Install auto completion (optional)
 ```commandline
-kgpt --install-completion
+$ kgpt --install-completion
 ```
 
 ### Example
@@ -67,6 +68,33 @@ exitcode: 0 (execution succeeded)
 Code output: 
 deployment.apps "mynginx" deleted
 service "mynginx" deleted
+```
+#### 5. You can also chat with a file, just use the *--doc [path or url]* option, let's find how weather there are vulnerability in a k8s yaml (Note you can't execute code when you supplied *--doc* option in RAG enabled mode)
+
+```commandline
+kgpt chat "find vulnerability in this k8s yaml file" --doc example_file/deployment1.yaml
+```
+you should be seeing the following output
+```commandline
+Intent: Code generation task (to find vulnerability in the provided k8s yaml file).
+
+The provided YAML file has a few issues that could potentially be considered vulnerabilities or misconfigurations:
+
+1. The `image` field does not specify a tag. Using the `latest` tag or not specifying a tag can lead to unpredictable deployments because it's not clear which version of the image is being used. It's better to use a specific version for reproducibility and to avoid accidentally pulling in an updated version with potential vulnerabilities.
+
+2. There are no resource requests or limits specified for the container. This can lead to resource exhaustion on the node where the pod is running, potentially affecting other pods and the stability of the node itself.
+
+3. There is no readiness probe defined. While not necessarily a vulnerability, a readiness probe is important for ensuring that traffic is not sent to a container that isn't ready to handle it.
+
+4. The deployment does not define any security context. Without a security context, the container may run with default settings, which could include running as root, potentially leading to security risks if the container is compromised.
+
+5. The YAML syntax is incorrect. The dashes before `name` and `containerPort` should not be indented.
+
+Please note that the specific values for image version, resource requests, limits, and security context should be adjusted according to the actual requirements and best practices for the application and the organization's security policies.
+```
+You can also supply kgpt with multiply docs
+```commandline
+kgpt chat "combine these to yaml into one yaml" --doc example_file/deployment1.yaml --doc example_file/service1.yaml
 ```
 
 ### List of possible tasks

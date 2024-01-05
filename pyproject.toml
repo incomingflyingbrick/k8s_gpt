@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "agentk8s"
-version = "0.1.11"
+version = "0.1.12"
 description = "k8s agent that does all the work for you."
-authors = ["天才 <18320122+incomingflyingbrick@users.noreply.github.com>"]
+authors = ["Saerdna <18320122+incomingflyingbrick@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]

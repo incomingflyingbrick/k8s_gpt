@@ -42,9 +42,7 @@ def chat(prompt: Annotated[str, typer.Argument(help="Enter a prompt like \"Show 
                                                      "'org', 'pptx', 'jsonl',"
                                                      "'txt', 'tsv', 'yml', 'json', 'md', 'pdf', 'xlsx', 'csv', "
                                                      "'html', 'log',"
-                                                     "'yaml', 'doc', 'odt', 'rtf', 'ppt', 'epub', 'rst']\"")] = [],
-         run_code: Annotated[bool, typer.Option(help="Weather to turn on code execution when --doc option is "
-                                                     "supplied.")] = False):
+                                                     "'yaml', 'doc', 'odt', 'rtf', 'ppt', 'epub', 'rst']\"")] = []):
     """
     Start chat with the k8s agent, let agent do things for you, you can chat with doc using --doc /path/to/doc/folder
     or --doc doc_url or for multiple docs you can enter option like this --doc /path/to/docs/folder --doc doc_url
@@ -65,7 +63,7 @@ def chat(prompt: Annotated[str, typer.Argument(help="Enter a prompt like \"Show 
         assistant = RetrieveAssistantAgent(
             name="K-GPT (RAG enabled)",
             system_message='You are now an Kubernetes (k8s) expert.' 'You should use kubectl '
-                           'command to complete task, you should output code blocks in shell '
+                           'command to excute tasks and code, you should output code blocks in shell '
                            'format',
             llm_config={
                 "temperature": 0,
@@ -87,7 +85,7 @@ def chat(prompt: Annotated[str, typer.Argument(help="Enter a prompt like \"Show 
                 "get_or_create": False,
                 "must_break_at_empty_line": False
             },
-            code_execution_config={"work_dir": "coding", "use_docker": False} if run_code else False,
+            code_execution_config=False,
             llm_config={"temperature": 0, "seed": 42,
                         "config_list": config_list}
         )
@@ -95,8 +93,6 @@ def chat(prompt: Annotated[str, typer.Argument(help="Enter a prompt like \"Show 
         assistant.reset()
         rag_proxy_agent.initiate_chat(assistant, problem=prompt, clear_history=True)
     else:
-        if run_code:
-            print("Option [red]--doc[/red] is not supplied, so [red]--run-code[/red] option is ignored")
         # Running assistant without RAG
         assistant = AssistantAgent("K-GPT", llm_config={"temperature": 0, "seed": 41,
                                                         "config_list": config_list},
